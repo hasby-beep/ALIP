@@ -1,4 +1,5 @@
-﻿import Image from "next/image";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function App() {
   return (
@@ -9,12 +10,16 @@ export default function App() {
           <h1 className="text-2xl font-semibold text-slate-900">Pengaduan Masyarakat</h1>
         </div>
         <div className="flex gap-3">
-          <button className="rounded-full border border-slate-300 bg-white px-5 py-2 text-sm font-medium text-slate-900 transition hover:bg-slate-100">
-            Masuk
-          </button>
-          <button className="rounded-full bg-green-800 px-5 py-2 text-sm font-medium text-white transition hover:bg-green-900">
-            Daftar
-          </button>
+          <Link href ="/login">
+            <button className="rounded-full border border-slate-300 bg-white px-5 py-2 text-sm font-medium text-slate-900 transition hover:bg-slate-100">
+              Masuk
+            </button>
+          </Link>
+          <Link href ="/register">
+            <button className="rounded-full bg-green-800 px-5 py-2 text-sm font-medium text-white transition hover:bg-green-900">
+              Daftar
+            </button>
+          </Link>
         </div>
       </header>
 
