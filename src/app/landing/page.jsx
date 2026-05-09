@@ -29,7 +29,7 @@ export default function App() {
           <h2 className="text-4xl font-bold text-black mb-4">
             Pengaduan Masyarakat
           </h2>
-
+        
           <p className="text-gray-700 mb-8 leading-relaxed">
             Lapor bukan berarti mengeluh, tapi wujud kepedulianmu terhadap
             kemajuan daerahmu.
