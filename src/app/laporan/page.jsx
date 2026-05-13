@@ -6,48 +6,122 @@ import { useState } from "react";
 export default function DetailLaporan() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
+  const [comments, setComments] = useState([
+    {
+      nama: "Andi",
+      isi: "Semoga segera diperbaiki karena cukup berbahaya.",
+      likes: 12,
+      dislikes: 1,
+      balasan: [
+        {
+          nama: "Admin",
+          isi: "Terima kasih atas laporannya, sedang diproses.",
+        },
+      ],
+    },
+    {
+      nama: "Siti",
+      isi: "Saya juga sering lewat jalan ini.",
+      likes: 8,
+      dislikes: 0,
+      balasan: [],
+    },
+  ]);
+
+  const [inputKomentar, setInputKomentar] = useState("");
+  const [replyInput, setReplyInput] = useState({});
+
+  // TAMBAH KOMENTAR
+  const handleTambahKomentar = () => {
+    if (inputKomentar.trim() === "") return;
+
+    const komentarBaru = {
+      nama: "User",
+      isi: inputKomentar,
+      likes: 0,
+      dislikes: 0,
+      balasan: [],
+    };
+
+    setComments([...comments, komentarBaru]);
+    setInputKomentar("");
+  };
+
+  // LIKE
+  const handleLike = (index) => {
+    const updated = [...comments];
+    updated[index].likes += 1;
+    setComments(updated);
+  };
+
+  // DISLIKE
+  const handleDislike = (index) => {
+    const updated = [...comments];
+    updated[index].dislikes += 1;
+    setComments(updated);
+  };
+
+  // BALAS KOMENTAR
+  const handleReply = (index) => {
+    if (!replyInput[index]) return;
+
+    const updated = [...comments];
+
+    updated[index].balasan.push({
+      nama: "User",
+      isi: replyInput[index],
+    });
+
+    setComments(updated);
+
+    setReplyInput({
+      ...replyInput,
+      [index]: "",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex">
 
       {/* Sidebar */}
-     {/* Sidebar */}
-<aside
-  className={`
-    bg-gray-900 text-white
-    transition-all duration-300 ease-in-out
-    ${sidebarOpen ? "w-64 p-6 opacity-100" : "w-0 p-0 opacity-0"}
-    overflow-hidden
-  `}
->
-  <div className={`${sidebarOpen ? "block" : "hidden"}`}>
-    
-    <h1 className="text-2xl font-bold mb-8 whitespace-nowrap">
-      LAPOR!
-    </h1>
+      <aside
+        className={`
+          bg-gray-900 text-white
+          transition-all duration-300 ease-in-out
+          ${sidebarOpen ? "w-64 p-6 opacity-100" : "w-0 p-0 opacity-0"}
+          overflow-hidden
+        `}
+      >
+        <div className={`${sidebarOpen ? "block" : "hidden"}`}>
 
-    <nav className="flex flex-col gap-4 text-sm whitespace-nowrap">
-      
-      <Link href="/home">
-        <span className="hover:bg-gray-800 p-2 rounded block">
-          Home
-        </span>
-      </Link>
+          <h1 className="text-2xl font-bold mb-8 whitespace-nowrap">
+            LAPOR!
+          </h1>
 
-      <a className="bg-gray-800 p-2 rounded">
-        Pengaduan
-      </a>
+          <nav className="flex flex-col gap-4 text-sm whitespace-nowrap">
 
-      <a className="hover:bg-gray-800 p-2 rounded">
-        Riwayat
-      </a>
+            <Link href="/home">
+              <span className="hover:bg-gray-800 p-2 rounded block">
+                Home
+              </span>
+            </Link>
 
-      <a className="hover:bg-gray-800 p-2 rounded">
-        Komentar
-      </a>
-    </nav>
+            <a className="bg-gray-800 p-2 rounded">
+              Pengaduan
+            </a>
 
-  </div>
-</aside>
+            <a className="hover:bg-gray-800 p-2 rounded">
+              Riwayat
+            </a>
+
+            <a className="hover:bg-gray-800 p-2 rounded">
+              Komentar
+            </a>
+          </nav>
+
+        </div>
+      </aside>
+
       {/* Main */}
       <div className="flex-1 p-6">
 
@@ -59,7 +133,6 @@ export default function DetailLaporan() {
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="bg-white shadow p-3 rounded-xl hover:bg-gray-100 transition"
           >
-            {/* ICON GARIS TIGA */}
             <div className="flex flex-col gap-1">
               <span className="w-6 h-[3px] bg-black rounded"></span>
               <span className="w-6 h-[3px] bg-black rounded"></span>
@@ -74,9 +147,9 @@ export default function DetailLaporan() {
 
         {/* Header */}
         <div className="bg-white p-6 rounded-xl shadow mb-6">
-          
+
           <div className="flex justify-between items-start">
-            
+
             <div>
               <p className="text-black text-sm">
                 ID Laporan
@@ -114,7 +187,7 @@ export default function DetailLaporan() {
 
             {/* Description */}
             <div className="bg-white p-6 rounded-xl shadow">
-              
+
               <h3 className="font-semibold mb-3 text-black">
                 Deskripsi Laporan
               </h3>
@@ -125,6 +198,127 @@ export default function DetailLaporan() {
                 Mohon segera diperbaiki.
               </p>
             </div>
+
+            {/* KOMENTAR */}
+            <div className="bg-white p-6 rounded-xl shadow">
+
+              <h3 className="font-semibold text-black text-lg mb-5">
+                Komentar
+              </h3>
+
+              {/* INPUT KOMENTAR */}
+              <div className="flex gap-3 mb-6">
+
+                <input
+                  type="text"
+                  placeholder="Tulis komentar..."
+                  value={inputKomentar}
+                  onChange={(e) => setInputKomentar(e.target.value)}
+                  className="flex-1 border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-black text-black"
+                />
+
+                <button
+                  onClick={handleTambahKomentar}
+                  className="bg-black text-white px-5 rounded-xl hover:bg-gray-800 transition"
+                >
+                  Kirim
+                </button>
+              </div>
+
+              {/* LIST KOMENTAR */}
+              <div className="space-y-5">
+
+                {comments.map((item, index) => (
+                  <div
+                    key={index}
+                    className="border border-gray-200 rounded-2xl p-5"
+                  >
+
+                    {/* USER */}
+                    <div className="flex items-center justify-between">
+
+                      <div>
+                        <h4 className="font-semibold text-black">
+                          {item.nama}
+                        </h4>
+
+                        <p className="text-gray-600 text-sm mt-2">
+                          {item.isi}
+                        </p>
+                      </div>
+
+                    </div>
+
+                    {/* ACTION */}
+                    <div className="flex items-center gap-4 mt-4">
+
+                      <button
+                        onClick={() => handleLike(index)}
+                        className="flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-xl text-sm hover:bg-green-200 transition"
+                      >
+                        👍 {item.likes}
+                      </button>
+
+                      <button
+                        onClick={() => handleDislike(index)}
+                        className="flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-xl text-sm hover:bg-red-200 transition"
+                      >
+                        👎 {item.dislikes}
+                      </button>
+
+                    </div>
+
+                    {/* BALASAN */}
+                    <div className="mt-5 ml-5 space-y-3">
+
+                      {item.balasan.map((reply, i) => (
+                        <div
+                          key={i}
+                          className="bg-gray-100 rounded-xl p-4"
+                        >
+                          <h5 className="font-semibold text-sm text-black">
+                            {reply.nama}
+                          </h5>
+
+                          <p className="text-gray-600 text-sm mt-1">
+                            {reply.isi}
+                          </p>
+                        </div>
+                      ))}
+
+                    </div>
+
+                    {/* INPUT BALAS */}
+                    <div className="flex gap-3 mt-5">
+
+                      <input
+                        type="text"
+                        placeholder="Balas komentar..."
+                        value={replyInput[index] || ""}
+                        onChange={(e) =>
+                          setReplyInput({
+                            ...replyInput,
+                            [index]: e.target.value,
+                          })
+                        }
+                        className="flex-1 border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-black text-black"
+                      />
+
+                      <button
+                        onClick={() => handleReply(index)}
+                        className="bg-black text-white px-5 rounded-xl hover:bg-gray-800 transition"
+                      >
+                        Balas
+                      </button>
+
+                    </div>
+
+                  </div>
+                ))}
+
+              </div>
+            </div>
+
           </div>
 
           {/* Right Info */}
@@ -132,7 +326,7 @@ export default function DetailLaporan() {
 
             {/* Informasi Laporan */}
             <div className="bg-white p-6 rounded-xl shadow text-sm space-y-3">
-              
+
               <h3 className="font-semibold mb-3 text-black">
                 Informasi Laporan
               </h3>
@@ -155,7 +349,7 @@ export default function DetailLaporan() {
 
             {/* Informasi Pelapor */}
             <div className="bg-white p-6 rounded-xl shadow text-sm space-y-3">
-              
+
               <h3 className="font-semibold mb-3 text-black">
                 Informasi Pelapor
               </h3>

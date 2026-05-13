@@ -81,10 +81,10 @@ export default function ProfilePage() {
           </h1>
         </div>
 
-        {/* PROFILE CARD */}
+        {/* PROFILE SECTION */}
         <div className="grid lg:grid-cols-3 gap-8">
 
-          {/* LEFT PROFILE */}
+          {/* CARD PROFILE */}
           <div className="bg-white rounded-3xl shadow-sm p-8 h-fit">
 
             <div className="flex flex-col items-center">
@@ -99,74 +99,118 @@ export default function ProfilePage() {
                 Budi Santoso
               </h2>
 
-              <p className="text-gray-500 mt-1">
+              <p className="text-gray-500 mt-2">
                 budi@email.com
               </p>
 
-              <span className="mt-4 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm">
+              <span className="mt-5 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm">
                 Pengguna Aktif
               </span>
-            </div>
-
-            {/* INFO */}
-            <div className="mt-10 space-y-5">
-
-              <div>
-                <p className="text-gray-500 text-sm">
-                  Nomor Telepon
-                </p>
-
-                <h3 className="font-semibold text-black mt-1">
-                  0812-3456-7890
-                </h3>
-              </div>
-
-              <div>
-                <p className="text-gray-500 text-sm">
-                  Alamat
-                </p>
-
-                <h3 className="font-semibold text-black mt-1">
-                  Bekasi, Indonesia
-                </h3>
-              </div>
-
-              <div>
-                <p className="text-gray-500 text-sm">
-                  Bergabung
-                </p>
-
-                <h3 className="font-semibold text-black mt-1">
-                  Januari 2024
-                </h3>
-              </div>
 
             </div>
           </div>
 
-          {/* RIGHT CONTENT */}
-          <div className="lg:col-span-2">
+          {/* DATA DIRI */}
+          <div className="lg:col-span-2 bg-white rounded-3xl shadow-sm p-10">
 
-            <div className="bg-white rounded-3xl shadow-sm p-10 h-full flex flex-col justify-center">
+            <div className="flex items-center justify-between mb-10">
 
-              <h2 className="text-5xl font-bold text-black leading-tight">
-                Profile
-                <span className="block text-gray-400">
-                  Settings
-                </span>
-              </h2>
+              <div>
+                <h2 className="text-4xl font-bold text-black">
+                  Data Diri
+                </h2>
 
-              <p className="text-gray-500 mt-6 text-lg leading-relaxed max-w-xl">
-                Kelola informasi akun anda, ubah data profile,
-                dan perbarui informasi pribadi dengan mudah.
-              </p>
+                <p className="text-gray-500 mt-2">
+                  Informasi lengkap pengguna
+                </p>
+              </div>
 
               <button
                 onClick={() => setEditOpen(true)}
-                className="mt-10 bg-black text-white px-7 py-4 rounded-2xl w-fit hover:bg-gray-800 transition"
+                className="bg-black text-white px-6 py-4 rounded-2xl hover:bg-gray-800 transition"
               >
                 Edit Profile
               </button>
+
+            </div>
+
+            {/* INFO GRID */}
+            <div className="grid md:grid-cols-2 gap-8">
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Nama Lengkap
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  Budi Santoso
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Email
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  budi@email.com
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Nomor Telepon
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  0812-3456-7890
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Kota
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  Bekasi
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Bergabung
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  Januari 2024
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Status
+                </p>
+
+                <h3 className="text-xl font-bold text-green-600 mt-2">
+                  Aktif
+                </h3>
+              </div>
+
+            </div>
+
+            {/* BIO */}
+            <div className="bg-gray-100 rounded-2xl p-6 mt-8">
+
+              <p className="text-gray-500 text-sm">
+                Bio
+              </p>
+
+              <p className="text-black leading-relaxed mt-3">
+                Saya aktif menggunakan layanan pengaduan masyarakat
+                untuk membantu lingkungan menjadi lebih baik dan nyaman
+                bagi semua warga.
+              </p>
 
             </div>
 
