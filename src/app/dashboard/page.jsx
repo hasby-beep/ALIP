@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function HomePage() {
+export default function Dashboar() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [laporan, setLaporan] = useState([]);
   const router = useRouter();
@@ -25,11 +25,13 @@ export default function HomePage() {
         console.log("laporan:", json);
         setLaporan(json.data);
       });
+
   }, []);
+
 
   return (
     <main className="flex min-h-screen bg-[#F0F9FF] font-sans">
-      {/* SIDEBAR - Tetap sama seperti sebelumnya */}
+      {/* SIDEBAR - Konsisten dengan desain sebelumnya */}
       <aside
         className={`
       bg-[#0F172A] text-white
@@ -41,14 +43,9 @@ export default function HomePage() {
       >
         <div className={`${sidebarOpen ? "block" : "hidden"}`}>
           <div className="mb-12">
-            <Link href={"/home"}>
-              <h1
-                onClick={() => router.push("/home")}
-                className="text-4xl font-extrabold whitespace-nowrap tracking-tight"
-              >
-                LAPOR<span className="text-[#06B6D4]">!</span>
-              </h1>
-            </Link>
+            <h1 className="text-4xl font-extrabold whitespace-nowrap tracking-tight">
+              LAPOR<span className="text-[#06B6D4]">!</span>
+            </h1>
             <p className="text-cyan-400 text-sm font-medium mt-1 uppercase tracking-wider whitespace-nowrap">
               Pengaduan Masyarakat
             </p>
@@ -56,16 +53,19 @@ export default function HomePage() {
 
           <nav className="flex flex-col gap-3">
             <button className="bg-[#06B6D4] text-white px-6 py-4 rounded-2xl text-left font-bold whitespace-nowrap shadow-lg shadow-cyan-900/20">
-              <Link href="/home">Home</Link>
+              Home
             </button>
-            <Link href="/dashboard">
+
+            <Link href="/laporan">
               <button className="hover:bg-slate-800 px-6 py-4 rounded-2xl text-left transition whitespace-nowrap w-full text-slate-300 hover:text-white font-medium">
-                Dashboard
+                Pengaduan
               </button>
             </Link>
+
             <button className="hover:bg-slate-800 px-6 py-4 rounded-2xl text-left transition whitespace-nowrap text-slate-300 hover:text-white font-medium">
               Riwayat
             </button>
+
             <button className="hover:bg-slate-800 px-6 py-4 rounded-2xl text-left transition whitespace-nowrap text-slate-300 hover:text-white font-medium">
               Pengaturan
             </button>
@@ -81,7 +81,7 @@ export default function HomePage() {
         </div>
       </aside>
 
-      {/* CONTENT */}
+      {/* MAIN CONTENT */}
       <section className="flex-1 p-6 md:p-10 overflow-y-auto">
         {/* TOPBAR */}
         <div className="flex items-center gap-6 mb-10">
@@ -100,8 +100,8 @@ export default function HomePage() {
           </h1>
         </div>
 
-        {/* HERO - Tetap Konsisten */}
-        <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-xl shadow-cyan-100/50 flex flex-col lg:flex-row items-center justify-between gap-12 border border-cyan-50 border-b-4 border-b-cyan-500">
+        {/* HERO SECTION */}
+        <div className="bg-white rounded-[40px] p-8 md:p-12 shadow-xl shadow-cyan-100/50 flex flex-col lg:flex-row items-center justify-between gap-12 border border-cyan-50 border-b-4 border-b-cyan-500 mb-12">
           <div className="max-w-xl">
             <h1 className="text-5xl font-extrabold leading-[1.1] text-[#0F172A]">
               Sampaikan Laporan <br />
@@ -125,7 +125,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* STATS */}
+        {/* STATS CARDS */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
           {[
             { label: "Total Pengaduan", val: "2.456", color: "text-[#0F172A]" },
@@ -147,66 +147,72 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* SECTION CARD LAPORAN - 3 Kolom */}
+        {/* PENGADUAN TERBARU - Grid Dinamis 3/4 Kolom */}
         <div className="mt-16">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-3xl font-black text-[#0F172A]">
-              Pengaduan Terbaru
-            </h2>
-            <button className="text-[#0891B2] font-bold hover:text-[#06B6D4] flex items-center gap-2 transition-all text-sm">
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <h2 className="text-3xl font-black text-[#0F172A] tracking-tight">
+                Pengaduan Terbaru
+              </h2>
+              <p className="text-slate-500 text-sm mt-1 font-medium">
+                Pantau laporan terkini dari masyarakat di sekitarmu.
+              </p>
+            </div>
+            <button className="group text-[#0891B2] font-bold hover:text-[#06B6D4] flex items-center gap-2 transition-all text-sm bg-white px-5 py-2.5 rounded-2xl shadow-sm border border-cyan-50 hover:shadow-md">
               Lihat Semua
-              <span className="text-lg">→</span>
+              <span className="text-lg transition-transform group-hover:translate-x-1">
+                →
+              </span>
             </button>
           </div>
 
-          {/* Grid Dinamis berdasarkan status sidebarOpen */}
           <div
             className={`
-    grid grid-cols-1 sm:grid-cols-2 gap-6 transition-all duration-500
-    ${
-      sidebarOpen
-        ? "lg:grid-cols-3 xl:grid-cols-3" // Saat sidebar buka: Max 3 kolom agar tidak sesak
-        : "lg:grid-cols-4 xl:grid-cols-4" // Saat sidebar tutup: Max 4 kolom karena ruang lebih luas
-    }
-  `}
+          grid grid-cols-1 sm:grid-cols-2 gap-8 transition-all duration-500 ease-in-out
+          ${sidebarOpen ? "lg:grid-cols-3 xl:grid-cols-3" : "lg:grid-cols-4 xl:grid-cols-4"}
+        `}
           >
             {laporan.map((item) => (
               <div
                 key={item.id}
-                className="group bg-white rounded-[30px] overflow-hidden shadow-lg shadow-cyan-100/40 hover:shadow-2xl hover:shadow-cyan-200 transition-all duration-300 transform hover:-translate-y-2 border border-cyan-50 flex flex-col"
+                className="group bg-white rounded-[32px] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(6,182,212,0.15)] transition-all duration-500 transform hover:-translate-y-3 border border-slate-100/50 flex flex-col"
               >
-                {/* Image Container - Tinggi h-48 */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-52 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
                   <img
                     src={`http://localhost:5000/gambar/${item.gambar}`}
                     alt={item.judul}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                   />
-                  <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-xl shadow-sm">
-                    <p className="text-[9px] font-bold text-[#0891B2] uppercase tracking-wider">
+                  <div className="absolute top-4 right-4 z-20 backdrop-blur-md bg-white/80 border border-white/20 px-4 py-2 rounded-2xl shadow-sm">
+                    <p className="text-[10px] font-black text-[#0891B2] uppercase tracking-widest text-center leading-none">
                       {new Date(item.create_at).toLocaleDateString("id-ID", {
-                        day: "numeric",
+                        day: "2-digit",
                         month: "short",
                       })}
+                    </p>
+                    <p className="text-[9px] text-slate-500 font-bold text-center mt-1">
+                      {new Date(item.create_at).getFullYear()}
                     </p>
                   </div>
                 </div>
 
-                {/* Content Container */}
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-lg font-extrabold text-[#0F172A] line-clamp-2 group-hover:text-[#06B6D4] transition-colors leading-snug">
+                <div className="p-7 flex flex-col flex-1">
+                  <h3 className="text-[19px] font-extrabold text-[#0F172A] line-clamp-2 group-hover:text-[#06B6D4] transition-colors duration-300 leading-[1.4] mb-3">
                     {item.judul}
                   </h3>
-
-                  <p className="text-slate-500 mt-2 flex items-center gap-2 font-medium text-xs">
-                    <span className="text-cyan-500 text-sm">📍</span>
-                    {item.lokasi}
-                  </p>
-
-                  <div className="mt-auto pt-6">
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-50 text-cyan-500 text-xs">
+                      📍
+                    </div>
+                    <p className="text-slate-500 font-semibold text-xs tracking-wide truncate">
+                      {item.lokasi}
+                    </p>
+                  </div>
+                  <div className="mt-auto pt-4">
                     <button
                       onClick={() => router.push(`/laporan/${item.id}`)}
-                      className="w-full bg-[#F0F9FF] text-[#0891B2] py-3 rounded-xl font-bold text-sm hover:bg-[#06B6D4] hover:text-white transition-all duration-300 shadow-sm"
+                      className="w-full bg-[#F0F9FF] text-[#0891B2] py-4 rounded-[22px] font-black text-xs uppercase tracking-widest hover:bg-[#06B6D4] hover:text-white hover:shadow-lg hover:shadow-cyan-200 transition-all duration-300"
                     >
                       Detail Laporan
                     </button>

@@ -1,10 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const router = useRouter();
+
+  useEffect (() => {
+    const role = localStorage.getItem("role")
+    const token = localStorage.getItem("token")
+
+    if (!token) {
+      router.push("/login")
+      return
+    }
+    if (role !== "admin") {
+      router.push("/home")
+      return
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
