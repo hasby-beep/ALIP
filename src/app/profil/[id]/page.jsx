@@ -97,9 +97,14 @@ export default function ProfilePage() {
           <h1 className="text-2xl font-bold text-black">Profile</h1>
         </div>
 
-        {/* PROFILE CARD */}
+        {/* PROFILE SECTION */}
         <div className="grid lg:grid-cols-3 gap-8">
+<<<<<<< HEAD:src/app/profil/[id]/page.jsx
           {/* LEFT PROFILE */}
+=======
+
+          {/* CARD PROFILE */}
+>>>>>>> 3ac8c57cfed6e4d8a81e98fe18c8c2dee348ff37:src/app/profil/page.jsx
           <div className="bg-white rounded-3xl shadow-sm p-8 h-fit">
             <div className="flex flex-col items-center">
               <img
@@ -112,11 +117,18 @@ export default function ProfilePage() {
                 {users.username}
               </h2>
 
+<<<<<<< HEAD:src/app/profil/[id]/page.jsx
               <p className="text-gray-500 mt-1">{users.email}</p>
+=======
+              <p className="text-gray-500 mt-2">
+                budi@email.com
+              </p>
+>>>>>>> 3ac8c57cfed6e4d8a81e98fe18c8c2dee348ff37:src/app/profil/page.jsx
 
-              <span className="mt-4 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm">
+              <span className="mt-5 bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full text-sm">
                 Pengguna Aktif
               </span>
+<<<<<<< HEAD:src/app/profil/[id]/page.jsx
             </div>
 
             {/* INFO */}
@@ -163,14 +175,118 @@ export default function ProfilePage() {
                 Kelola informasi akun anda, ubah data profile, dan perbarui
                 informasi pribadi dengan mudah.
               </p>
+=======
+
+            </div>
+          </div>
+
+          {/* DATA DIRI */}
+          <div className="lg:col-span-2 bg-white rounded-3xl shadow-sm p-10">
+
+            <div className="flex items-center justify-between mb-10">
+
+              <div>
+                <h2 className="text-4xl font-bold text-black">
+                  Data Diri
+                </h2>
+
+                <p className="text-gray-500 mt-2">
+                  Informasi lengkap pengguna
+                </p>
+              </div>
+>>>>>>> 3ac8c57cfed6e4d8a81e98fe18c8c2dee348ff37:src/app/profil/page.jsx
 
               <button
                 onClick={() => setEditOpen(true)}
-                className="mt-10 bg-black text-white px-7 py-4 rounded-2xl w-fit hover:bg-gray-800 transition"
+                className="bg-black text-white px-6 py-4 rounded-2xl hover:bg-gray-800 transition"
               >
                 Edit Profile
               </button>
             </div>
+<<<<<<< HEAD:src/app/profil/[id]/page.jsx
+=======
+
+            {/* INFO GRID */}
+            <div className="grid md:grid-cols-2 gap-8">
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Nama Lengkap
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  Budi Santoso
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Email
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  budi@email.com
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Nomor Telepon
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  0812-3456-7890
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Kota
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  Bekasi
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Bergabung
+                </p>
+
+                <h3 className="text-xl font-bold text-black mt-2">
+                  Januari 2024
+                </h3>
+              </div>
+
+              <div className="bg-gray-100 rounded-2xl p-6">
+                <p className="text-gray-500 text-sm">
+                  Status
+                </p>
+
+                <h3 className="text-xl font-bold text-green-600 mt-2">
+                  Aktif
+                </h3>
+              </div>
+
+            </div>
+
+            {/* BIO */}
+            <div className="bg-gray-100 rounded-2xl p-6 mt-8">
+
+              <p className="text-gray-500 text-sm">
+                Bio
+              </p>
+
+              <p className="text-black leading-relaxed mt-3">
+                Saya aktif menggunakan layanan pengaduan masyarakat
+                untuk membantu lingkungan menjadi lebih baik dan nyaman
+                bagi semua warga.
+              </p>
+
+            </div>
+
+>>>>>>> 3ac8c57cfed6e4d8a81e98fe18c8c2dee348ff37:src/app/profil/page.jsx
           </div>
         </div>
 
